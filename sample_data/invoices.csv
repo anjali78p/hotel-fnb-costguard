@@ -1,0 +1,8 @@
+invoice_no,supplier,item,po_rate,invoice_rate,received_qty,invoice_date
+INV-1001,Royal Liquor Distributors,Johnnie Walker Black Label 750ml,3200,3200,12,2026-10-01
+INV-1002,Royal Liquor Distributors,Kingfisher Beer 650ml,140,140,240,2026-10-01
+INV-1003,Fresh Farm Foods,Basmati Rice (kg),95,95,50,2026-10-01
+INV-1004,Fresh Farm Foods,Paneer (kg),320,320,15,2026-10-01
+INV-1005,Metro Poultry,Chicken (kg),240,262,30,2026-10-01
+INV-1005,Metro Poultry,Chicken (kg),240,262,30,2026-10-01
+INV-1006,Fresh Farm Foods,Olive Oil (litre),650,650,10,2026-10-01

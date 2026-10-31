@@ -1,0 +1,11 @@
+check_id,business_date,outlet,original_amount,discount_amount,net_amount,reason,entered_by,approved_by,approval_status
+DC001,2026-10-02,Main Restaurant,4200,420,3780,Guest complaint - slow service,EMP101,MGR01,Approved
+DC002,2026-10-02,Main Restaurant,6800,1700,5100,Birthday celebration,EMP102,MGR01,Approved
+DC003,2026-10-03,Bar,3500,1400,2100,,EMP103,MGR02,Approved
+DC004,2026-10-03,Coffee Shop,1200,120,1080,Loyalty member,EMP104,,Pending
+DC005,2026-10-04,Room Service,2500,250,2250,Wrong order delivered,EMP105,MGR02,Approved
+DC006,2026-10-04,Main Restaurant,9000,3150,5850,Corporate tie-up,EMP101,,Missing
+DC007,2026-10-05,Bar,0,0,0,Zero value test row,EMP103,MGR02,Approved
+DC008,2026-10-05,Coffee Shop,800,80,720,Staff meal policy,EMP104,MGR03,Approved
+DC009,2026-10-06,Main Restaurant,5000,500,4500,Regular guest,EMP102,MGR01,Approved
+DC009,2026-10-06,Main Restaurant,5000,500,4500,Regular guest,EMP102,MGR01,Approved

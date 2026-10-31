@@ -1,0 +1,10 @@
+check_id,business_date,outlet,void_amount,reason,voided_by,approved_by,approval_status,remarks
+VD001,2026-10-02,Main Restaurant,1850,Wrong item punched,EMP101,MGR01,Approved,Reprinted correct KOT
+VD002,2026-10-02,Bar,3200,,EMP103,MGR02,Approved,
+VD003,2026-10-03,Bar,2400,Guest changed order,EMP103,,Missing,
+VD004,2026-10-03,Room Service,900,Duplicate KOT,EMP105,MGR02,Approved,
+VD005,2026-10-04,Bar,1800,Wrong item punched,EMP103,MGR02,Approved,Third void this week
+VD006,2026-10-05,Bar,2600,Guest changed order,EMP103,MGR02,Approved,Repeat pattern - review
+VD007,2026-10-05,Coffee Shop,350,Item unavailable,EMP104,MGR03,Approved,
+VD008,2026-10-06,Main Restaurant,4100,Billing error,EMP102,MGR01,Approved,
+VD008,2026-10-06,Main Restaurant,4100,Billing error,EMP102,MGR01,Approved,Duplicate export row
