@@ -1,0 +1,10 @@
+business_date,item_id,item_name,outlet,opening_qty,purchases_qty,issues_qty,returns_qty,transfers_in,transfers_out,breakage_qty,book_closing_qty,physical_count,unit_cost
+2026-10-01,LQ001,Johnnie Walker Black Label 750ml,Bar,24,12,10,0,0,0,0,26,26,3200
+2026-10-01,LQ002,Absolut Vodka 750ml,Bar,30,0,12,0,0,0,1,17,14,1800
+2026-10-01,LQ003,Kingfisher Beer 650ml,Bar,120,240,200,0,0,0,2,158,158,140
+2026-10-01,LQ004,Old Monk Rum 750ml,Bar,18,0,6,0,0,2,0,10,10,900
+2026-10-01,LQ004,Old Monk Rum 750ml,Banquet,6,0,3,0,2,0,0,5,5,900
+2026-10-01,FD001,Basmati Rice (kg),Main Kitchen,80,50,60,0,0,0,0,70,69,95
+2026-10-01,FD002,Paneer (kg),Main Kitchen,20,15,28,0,0,0,1,6,6,320
+2026-10-01,FD003,Chicken (kg),Main Kitchen,25,30,40,2,0,0,0,17,19,240
+2026-10-01,FD004,Olive Oil (litre),Main Kitchen,15,10,9,0,0,0,0,16,16,650

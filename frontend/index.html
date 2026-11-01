@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel F&B CostGuard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="side">
+  <h1>CostGuard</h1>
+  <p class="sub">Hotel F&amp;B control tower</p>
+  <nav id="nav">
+    <button data-page="overview" class="on">Overview</button>
+    <button data-page="checks">Checks &amp; Revenue Control</button>
+    <button data-page="cost">Cost analysis</button>
+    <button data-page="inventory">Inventory</button>
+    <button data-page="banquets">Banquet profitability</button>
+    <button data-page="alerts">Corrective actions</button>
+    <button data-page="upload">Upload data</button>
+  </nav>
+  <p class="demo">Fabricated demo data only</p>
+</aside>
+<main>
+  <header class="filters">
+    <label>From <input type="date" id="f-from"></label>
+    <label>To <input type="date" id="f-to"></label>
+    <label>Outlet
+      <select id="f-outlet"><option value="">All outlets</option>
+        <option>Main Restaurant</option><option>Bar</option><option>Banquet</option>
+        <option>Room Service</option><option>Coffee Shop</option><option>Main Kitchen</option></select>
+    </label>
+    <button id="apply">Apply filters</button>
+    <button id="reset" class="ghost">Clear</button>
+    <span id="fresh" class="fresh"></span>
+  </header>
+  <div id="msg" class="msg" hidden></div>
+  <section id="page"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

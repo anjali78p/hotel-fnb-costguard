@@ -1,0 +1,7 @@
+purchase_id,business_date,supplier_id,supplier_name,item_id,invoice_no,po_no,received_qty,purchase_rate
+PUR001,2026-10-01,SUP01,Royal Liquor Distributors,LQ001,INV-1001,PO-5001,12,3200
+PUR002,2026-10-01,SUP01,Royal Liquor Distributors,LQ003,INV-1002,PO-5002,240,140
+PUR003,2026-10-01,SUP02,Fresh Farm Foods,FD001,INV-1003,PO-5003,50,95
+PUR004,2026-10-01,SUP02,Fresh Farm Foods,FD002,INV-1004,PO-5004,15,320
+PUR005,2026-10-01,SUP03,Metro Poultry,FD003,INV-1005,PO-5005,30,240
+PUR006,2026-10-01,SUP02,Fresh Farm Foods,FD004,INV-1006,PO-5006,10,650

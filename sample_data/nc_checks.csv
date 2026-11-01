@@ -1,0 +1,6 @@
+check_id,business_date,outlet,reference_type,reference_id,nc_amount,reason,entered_by,approved_by,approval_status
+NC001,2026-10-02,Main Restaurant,GUEST_RECOVERY,GR-0001,1200,Service recovery - delayed order,EMP101,MGR01,Approved
+NC002,2026-10-03,Bar,MANAGER_HOSPITALITY,MH-0004,2800,,EMP103,MGR02,Approved
+NC003,2026-10-04,Room Service,AMENITY,AM001,650,VIP welcome amenity,EMP105,MGR02,Approved
+NC004,2026-10-05,Banquet,EVENT,EV002,5400,Client relationship gesture,EMP106,,Missing
+NC005,2026-10-06,Coffee Shop,TRAINING,TR-0002,450,Barista training tasting,EMP104,MGR03,Approved

@@ -1,0 +1,2 @@
+business_date,item_id,item_name,outlet,opening_qty,purchases_qty,issues_qty,returns_qty,transfers_in,transfers_out,breakage_qty,book_closing_qty,unit_cost
+2026-10-01,LQ001,Johnnie Walker Black Label 750ml,Bar,24,12,10,0,0,0,0,26,3200

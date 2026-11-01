@@ -1,0 +1,6 @@
+check_id,business_date,room_or_event_ref,amenity_type,outlet,quantity,amount,reason,entered_by,approved_by,approval_status
+AM001,2026-10-04,RM-XX12,Fruit Basket,Room Service,1,650,VIP welcome amenity,EMP105,MGR02,Approved
+AM002,2026-10-04,RM-XX08,Cookies Plate,Room Service,2,500,Birthday amenity,EMP105,MGR02,Approved
+AM003,2026-10-05,EV002,Welcome Drinks,Banquet,120,9600,Corporate client welcome,EMP106,MGR04,Approved
+AM004,2026-10-06,RM-XX21,Wine Bottle,Bar,1,2200,,EMP103,,Missing
+AM005,2026-10-07,RM-XX05,Chocolate Box,Room Service,15,7500,Honeymoon amenities,EMP105,MGR02,Approved
