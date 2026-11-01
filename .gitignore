@@ -4,4 +4,4 @@
   *.tfstate.backup
   .terraform/
   __pycache__/
-  venv/
+  venv/uploaded_data/

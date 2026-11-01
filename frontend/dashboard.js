@@ -114,6 +114,37 @@ const pages = {
     chart("c6", "bar", d.items.map(r => r.item_name + " (" + r.outlet + ")"), [{data: d.items.map(r => r.consumption_cost), backgroundColor: "#0f5c54"}], {indexAxis: "y", plugins: {legend: {display: false}}});
   },
 
+  async upload() {
+    const types = ["inventory", "purchases", "invoices", "beo_events", "discount_checks", "void_checks", "nc_checks", "amenities_checks", "sales"];
+    $("#page").innerHTML = `<h2>Upload data</h2><p class="lead">Upload a CSV, check it against the data rules, and see it on the dashboard. A valid file replaces the current data for that file type. Missing reasons or approvals are kept and flagged for review.</p>
+      <div class="box"><div class="filters"><label>File type <select id="u-type">${types.map(t => `<option>${t}</option>`).join("")}</select></label>
+        <label>CSV file <input type="file" id="u-file" accept=".csv"></label>
+        <button id="u-go">Upload and validate</button><button id="u-reset" class="ghost">Reset to sample data</button></div></div>
+      <div id="u-out" style="margin-top:14px"></div><h3 style="margin-top:18px">Recent uploads</h3><div id="u-list"></div>`;
+    const list = async () => {
+      const r = await (await fetch(API_BASE + "/api/uploads")).json();
+      $("#u-list").innerHTML = table(r.files, [{k: "uploaded_at", l: "Uploaded"}, {k: "file_type", l: "Type"}, {k: "filename", l: "File"}, {l: "Status", f: x => `<span class="b ${x.status === "PROCESSED" ? "ok" : x.status === "REJECTED" ? "" : "amber"}">${esc(x.status)}</span>`}, {k: "rows_ok", l: "Rows OK", n: 1}, {k: "rows_rejected", l: "Rows rejected", n: 1}]);
+    };
+    $("#u-go").onclick = async () => {
+      const f = $("#u-file").files[0];
+      if (!f) { $("#u-out").innerHTML = `<div class="msg">Choose a CSV file first.</div>`; return; }
+      const fd = new FormData(); fd.append("file", f); fd.append("file_type", $("#u-type").value);
+      try {
+        const res = await fetch(API_BASE + "/api/upload", {method: "POST", body: fd});
+        const r = await res.json();
+        if (!res.ok) { $("#u-out").innerHTML = `<div class="msg">${esc(r.error || "Upload failed")}</div>`; return; }
+        const cls = r.status === "PROCESSED" ? "" : r.status === "REJECTED" ? "bad" : "warn";
+        $("#u-out").innerHTML = `<div class="cards">${card("Status", esc(r.status), r.message || r.filename, cls)}${card("Rows imported", r.rows_ok ?? "–", "of " + (r.rows_total ?? "–"))}${card("Rows rejected", r.rows_rejected ?? "–", "", r.rows_rejected ? "bad" : "")}</div>` +
+          (r.errors?.length ? `<h3>Errors</h3>` + table(r.errors, [{k: "row", l: "Row"}, {k: "column", l: "Column"}, {k: "code", l: "Code"}, {k: "message", l: "Message"}]) : "") +
+          (r.warnings?.length ? `<h3>Warnings</h3>` + table(r.warnings, [{k: "row", l: "Row"}, {k: "code", l: "Code"}, {k: "message", l: "Message"}]) : "") +
+          (r.notes && Object.keys(r.notes).length ? `<div class="note">For review: ${esc(Object.entries(r.notes).map(([k, v]) => v + " " + k.replace(/_/g, " ")).join(", "))}.</div>` : "");
+        list();
+      } catch (e) { showErr(e); }
+    };
+    $("#u-reset").onclick = async () => { await fetch(API_BASE + "/api/uploads/reset", {method: "POST"}); $("#u-out").innerHTML = `<div class="note">Uploaded data removed. The dashboard uses sample data again.</div>`; list(); };
+    list();
+  },
+
   async inventory() {
     const d = await api("/api/inventory");
     setFresh(d.kpi.data_freshness);
