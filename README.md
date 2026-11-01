@@ -162,13 +162,4 @@ Switching to RDS only requires changing `backend/data_access.py`; calculations a
 - No budget comparison yet, and cost % uses a single day of inventory.
 - Alert status is always "Open" until a status store is connected.
 
-## Team
 
-| Member | Area |
-|---|---|
-| Member 1 (Anjali) | Data, calculations, rules, API, dashboard, tests |
-| Member 2 | AWS, backend infrastructure, security, deployment |
-
-## Contributing
-
-Work on a feature branch (`feature/data-dashboard`, `feature/aws-backend`), run `python -m pytest -q`, and open a pull request into `main`. Keep secrets, `.env` files and `uploaded_data/` out of Git.
