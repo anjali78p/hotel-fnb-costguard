@@ -125,3 +125,8 @@ def alerts(date_from: Optional[str] = Q_FROM, date_to: Optional[str] = Q_TO, out
     if priority:
         items = [i for i in items if i["priority"].lower() == priority.lower()]
     return {"count": len(items), "alerts": items, "note": "Flags are for review, not conclusions of misconduct."}
+
+# Serve dashboard
+import pathlib
+from fastapi.staticfiles import StaticFiles
+app.mount("/", StaticFiles(directory=pathlib.Path(__file__).resolve().parent.parent / "frontend", html=True), name="frontend")
