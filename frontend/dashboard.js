@@ -52,11 +52,12 @@ const COLS = {
 
 const pages = {
   async overview() {
-    const [d, b] = await Promise.all([api("/api/dashboard"), api("/api/banquets")]);
+    const [d, b, k] = await Promise.all([api("/api/dashboard"), api("/api/banquets"), api("/api/cost")]);
     setFresh(d.data_freshness);
     const c = d.nc_amenities_combined;
     $("#page").innerHTML = `<h2>Overview</h2><p class="lead">Cost, stock and transaction controls for the selected period.</p>
       <div class="cards">
+        ${card("F&B cost %", k.kpi.overall_cost_pct == null ? "n/a" : k.kpi.overall_cost_pct + "%", inr(k.kpi.total_cost) + " cost on " + inr(k.kpi.total_sales) + " sales")}
         ${card("Void checks", inr(d.voids.amount), d.voids.count + " unique checks", "warn")}
         ${card("Discounts", inr(d.discounts.amount), d.discounts.count + " checks, avg " + d.discounts.avg_discount_pct + "%", "warn")}
         ${card("NC value", inr(d.nc.amount), d.nc.count + " checks", "warn")}
@@ -99,6 +100,18 @@ const pages = {
     show();
     $("#ctabs").onclick = e => { const t = e.target.dataset.t; if (!t) return; checkTab = t;
       document.querySelectorAll("#ctabs button").forEach(b => b.classList.toggle("on", b.dataset.t === t)); show(); };
+  },
+
+  async cost() {
+    const d = await api("/api/cost");
+    setFresh(d.kpi.data_freshness);
+    $("#page").innerHTML = `<h2>Cost analysis</h2><p class="lead">${esc(d.meta.formula)}.</p>
+      <div class="cards">${card("Overall F&B cost %", d.kpi.overall_cost_pct == null ? "n/a" : d.kpi.overall_cost_pct + "%", inr(d.kpi.total_cost) + " cost / " + inr(d.kpi.total_sales) + " sales")}
+        ${d.by_category.map(c => card(c.category + " cost %", c.cost_pct == null ? "n/a" : c.cost_pct + "%", inr(c.consumption_cost) + " / " + inr(c.net_sales))).join("")}</div>
+      <div class="note">${esc(d.meta.note)}</div>
+      <div class="box" style="margin-bottom:16px"><h3>Consumption cost by item</h3><canvas id="c6"></canvas></div>` +
+      table(d.items, [{k: "business_date", l: "Date"}, {k: "item_name", l: "Item"}, {k: "outlet", l: "Outlet"}, {k: "category", l: "Category"}, {k: "consumption_qty", l: "Consumed qty", n: 1}, {l: "Unit cost", n: 1, f: amt("unit_cost")}, {l: "Consumption cost", n: 1, f: amt("consumption_cost")}]);
+    chart("c6", "bar", d.items.map(r => r.item_name + " (" + r.outlet + ")"), [{data: d.items.map(r => r.consumption_cost), backgroundColor: "#0f5c54"}], {indexAxis: "y", plugins: {legend: {display: false}}});
   },
 
   async inventory() {

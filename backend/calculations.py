@@ -111,3 +111,24 @@ def combined_nc_amenities(nc: pd.DataFrame, amenities: pd.DataFrame) -> dict:
     return {"nc_total": float(n.nc_amount.sum()), "amenities_total": float(a.amount.sum()),
             "overlap_check_ids": list(overlap.check_id), "overlap_value": overlap_val,
             "combined_total": gross - overlap_val}
+
+
+# ---------- Consumption cost & F&B cost % (by category) ----------
+def consumption_by_category(inv: pd.DataFrame, sales: pd.DataFrame) -> dict:
+    """Consumption qty = opening + purchases + transfers_in + returns - transfers_out - physical_count.
+    (Closing value uses PHYSICAL count; breakage/shortage therefore sit inside consumption.)
+    Convention to be confirmed with the hotel. Cost % = consumption cost / net sales x 100."""
+    d = inv.copy()
+    d["category"] = d.item_id.str[:2].map(config.CATEGORY_BY_PREFIX).fillna("Other")
+    d["consumption_qty"] = (d.opening_qty + d.purchases_qty + d.transfers_in + d.returns_qty
+                            - d.transfers_out - d.physical_count)
+    d["consumption_cost"] = d.consumption_qty * d.unit_cost
+    cost = d.groupby("category").consumption_cost.sum()
+    sold = sales.groupby("category").net_sales.sum()
+    rows = []
+    for cat in sorted(set(cost.index) | set(sold.index)):
+        c, s = float(cost.get(cat, 0.0)), float(sold.get(cat, 0.0))
+        rows.append({"category": cat, "consumption_cost": c, "net_sales": s, "cost_pct": fnb_cost_pct(c, s)})
+    tc, ts = sum(r["consumption_cost"] for r in rows), sum(r["net_sales"] for r in rows)
+    return {"rows": rows, "total_cost": tc, "total_sales": ts, "overall_cost_pct": fnb_cost_pct(tc, ts),
+            "items": d}

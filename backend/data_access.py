@@ -8,7 +8,7 @@ DATA_DIR = pathlib.Path(__file__).resolve().parent.parent / "sample_data"
 # file -> date column used for date-range filtering (None = not filterable)
 DATE_COL = {"inventory": "business_date", "invoices": "invoice_date", "beo_events": "event_date",
             "discount_checks": "business_date", "void_checks": "business_date",
-            "nc_checks": "business_date", "amenities_checks": "business_date"}
+            "nc_checks": "business_date", "amenities_checks": "business_date", "sales": "business_date"}
 
 
 def load(name: str, date_from: str = None, date_to: str = None, outlet: str = None) -> pd.DataFrame:

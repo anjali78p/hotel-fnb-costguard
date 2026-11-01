@@ -28,3 +28,12 @@
 - inventory_missing_column.csv -> error naming `physical_count`
 - inventory_bad_values.csv -> row errors: negative physical_count, non-numeric purchases_qty, bad date format
 - invoices.csv: INV-1005 duplicate; INV-1005 rate mismatch 240 vs 262 (+9.2%)
+
+## Cost analysis (sales.csv, Oct 1)
+Consumption qty = opening + purchases + transfers in + returns - transfers out - physical count (convention to confirm).
+| Category | Consumption cost | Net sales | Cost % |
+|---|---|---|---|
+| Food | 30,045 | 100,000 | 30.05% |
+| Beverage | 97,180 | 320,000 | 30.37% |
+| Overall | 127,225 | 420,000 | 30.29% |
+Bar -> Banquet transfer of LQ004 nets out (consumption 9 bottles in total).

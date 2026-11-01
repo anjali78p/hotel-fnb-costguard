@@ -126,6 +126,9 @@ def alerts(date_from: Optional[str] = Q_FROM, date_to: Optional[str] = Q_TO, out
         items = [i for i in items if i["priority"].lower() == priority.lower()]
     return {"count": len(items), "alerts": items, "note": "Flags are for review, not conclusions of misconduct."}
 
+from .cost_api import router as cost_router
+app.include_router(cost_router)
+
 # Serve dashboard
 import pathlib
 from fastapi.staticfiles import StaticFiles
